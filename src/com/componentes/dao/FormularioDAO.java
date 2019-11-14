@@ -15,8 +15,6 @@ public class FormularioDAO extends Servicio implements IDao {
 		
 		Formulario fr = new Formulario();
 		
-
-		
 		this.startEntityManagerFactory();
 		
 		this.em.getTransaction().begin();
