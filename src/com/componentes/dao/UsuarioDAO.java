@@ -31,7 +31,13 @@ public class UsuarioDAO<Usuario> extends Servicio implements IDao<Usuario> {
 
 	@Override
 	public Usuario Get(int id) {
-		// TODO Auto-generated method stub
+		
+		this.startEntityManagerFactory();
+		
+		Usuario usuario = em.find(Usuario.class, new Integer("1"));
+		
+		this.stopEntityManagerFactory();
+		
 		return null;
 	}
 
