@@ -6,7 +6,8 @@ public class UsuarioDAO<Usuario> extends Servicio implements IDao<Usuario> {
 
 	@Override
 	public void Insert(Usuario t) {
-		
+		try {
+		System.out.println("Entro......");
 		this.startEntityManagerFactory();
 		this.em.getTransaction().begin();
 		
@@ -14,7 +15,9 @@ public class UsuarioDAO<Usuario> extends Servicio implements IDao<Usuario> {
 		
 		this.em.getTransaction().commit();
 		this.stopEntityManagerFactory();
-		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -31,12 +34,7 @@ public class UsuarioDAO<Usuario> extends Servicio implements IDao<Usuario> {
 
 	@Override
 	public Usuario Get(int id) {
-		
-		this.startEntityManagerFactory();
-		
-		Usuario usuario = em.find(Usuario.class, new Integer("1"));
-		
-		this.stopEntityManagerFactory();
+
 		
 		return null;
 	}

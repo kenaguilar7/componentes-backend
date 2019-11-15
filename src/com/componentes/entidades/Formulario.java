@@ -37,11 +37,11 @@ public class Formulario implements Serializable {
 
 	   
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Integer Id;
 	private String Nombre;
 	private boolean Favorito;
-	@OneToMany(mappedBy="FormularioPadre",cascade= CascadeType.ALL)
+	@OneToMany(mappedBy="FormularioPadre",cascade= CascadeType.MERGE)
 	//@JoinColumn(name="IdFormulario")
 	//@IndexColumn(name="Id")
 	private List<Seccion> Secciones;

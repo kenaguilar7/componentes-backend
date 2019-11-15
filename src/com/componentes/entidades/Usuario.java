@@ -31,7 +31,7 @@ public class Usuario implements Serializable {
 	private String Nombre;
 	private String Correo;
 	private String Constrania;
-	
+	        
 	@OneToMany(mappedBy="UsuarioPadre",cascade= CascadeType.ALL)
 	//@JoinColumn(name="IdFormulario")
 	//@IndexColumn(name="Id")

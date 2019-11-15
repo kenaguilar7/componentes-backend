@@ -9,8 +9,12 @@ public class UsuarioTester {
 		
 		UsuarioDAO dao = new UsuarioDAO();
 		
-		dao.Get(1);
+		Usuario usuario = new Usuario();
+		usuario.setNombre("Andre");
+		usuario.setCorreo("Anthonyestiven@gmail.com");
+		usuario.setConstrania("123456");
 		
+		dao.Insert(usuario);
 		
 	}
 
