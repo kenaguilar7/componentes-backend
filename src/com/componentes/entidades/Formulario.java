@@ -37,7 +37,7 @@ public class Formulario implements Serializable {
 
 	   
 	@Id
-
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer Id;
 	private String Nombre;
 	private boolean Favorito;
