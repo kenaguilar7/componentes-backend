@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.IndexColumn;
 
 /**
@@ -14,6 +16,12 @@ import org.hibernate.annotations.IndexColumn;
  *
  */
 @Entity
+@NamedQueries(value = {
+		
+		@NamedQuery(
+				name = "Seccion.SeccionesEnFormulario", 
+				query = "SELECT s FROM Seccion s JOIN FETCH s.Items WHERE s.FormularioPadre = :formularioParam")
+})
 
 public class Seccion implements Serializable {
 

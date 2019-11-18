@@ -12,6 +12,17 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQueries(value = {
+		
+		@NamedQuery(
+				name = "Usuario.Logear", 
+				query = "SELECT u FROM Usuario u WHERE u.Nombre = :nombreParam AND u.Constrania = :constraniaParam"),
+		@NamedQuery(
+				name = "Usuario.GetAll", 
+				query = "SELECT u FROM Usuario u")
+		
+})
+
 @NamedNativeQueries({
 	@NamedNativeQuery(
 			name="Usuario.findAll", 

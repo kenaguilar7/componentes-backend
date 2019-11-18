@@ -5,12 +5,20 @@ import java.lang.Integer;
 import java.lang.String;
 import javax.persistence.*;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 /**
  * Entity implementation class for Entity: Item
  *
  */
 @Entity
-
+@NamedQueries(value = {
+		
+		@NamedQuery(
+				name = "Item.ItemEnSecciones", 
+				query = "SELECT i FROM Item i WHERE i.SeccionPadre = :seccionPadreParam")
+})
 public class Item implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

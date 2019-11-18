@@ -2,6 +2,7 @@ package com.componentes.dao;
 
 import java.util.List;
 
+import com.componentes.entidades.Formulario;
 import com.componentes.entidades.Seccion;
 
 public class SeccionDAO extends Servicio implements IDao {
@@ -44,6 +45,30 @@ public class SeccionDAO extends Servicio implements IDao {
 		return null;
 	}
 
+	public List<Seccion> seccionesEnFormulario(Formulario formularioPadre){
+		
+		List<Seccion> listaRetorno = null;
+		
+		try {
+			this.startEntityManagerFactory();
+			
+			listaRetorno = (List<Seccion>)em.createNamedQuery("Seccion.SeccionesEnFormulario").setParameter("formularioParam", formularioPadre).getResultList();
+			
+			if(listaRetorno.size() > 0) {
+				
+				return listaRetorno;
+				
+			}
+			
+			}catch (Exception e) {
+				System.out.println("No hay registros.");
+			}finally {
+				listaRetorno.size();
+				this.stopEntityManagerFactory();
+			}
+		return listaRetorno;
+	}
+	
 	@Override
 	public List GetList() {
 		// TODO Auto-generated method stub

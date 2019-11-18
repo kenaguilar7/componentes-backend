@@ -18,7 +18,11 @@ import org.hibernate.annotations.IndexColumn;
 		@NamedQuery(
 				name = "Formulario.findPK", 
 				query = "SELECT f FROM Formulario f WHERE f.Id = :idParam"
-	) 
+	),
+		@NamedQuery(
+				name = "Formulario.DeUsuario", 
+				query = "SELECT f FROM Formulario f JOIN FETCH f.Secciones WHERE f.UsuarioPadre = :usuarioParam "
+	)
 })
 
 @NamedNativeQueries({
@@ -41,7 +45,7 @@ public class Formulario implements Serializable {
 	private Integer Id;
 	private String Nombre;
 	private boolean Favorito;
-	@OneToMany(mappedBy="FormularioPadre",cascade= CascadeType.MERGE)
+	@OneToMany(mappedBy="FormularioPadre",cascade= CascadeType.ALL)
 	//@JoinColumn(name="IdFormulario")
 	//@IndexColumn(name="Id")
 	private List<Seccion> Secciones;

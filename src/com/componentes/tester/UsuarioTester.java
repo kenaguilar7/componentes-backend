@@ -1,7 +1,15 @@
 package com.componentes.tester;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
+
 import com.componentes.dao.UsuarioDAO;
 import com.componentes.entidades.Usuario;
+import com.ulatina.entidad.DemoPersona;
 
 public class UsuarioTester {
 
@@ -11,10 +19,8 @@ public class UsuarioTester {
 
 
 	public static void main(String[] args) {
-			try {
 			
-			startEntityManagerFactory();
-		/*	
+			/*
 			Usuario u = new Usuario();
 			u.setNombre("Anthony");
 			u.setConstrania("qwop123!");
@@ -28,8 +34,8 @@ public class UsuarioTester {
 			em.getTransaction().commit();
 		
 			*/
-			
-			Usuario u = new Usuario();
+/*			
+			Usuario us = new Usuario();
 			
 			System.out.println(" " + findPK().getNombre());
 
@@ -37,22 +43,18 @@ public class UsuarioTester {
 			
 			UsuarioDAO<Usuario> ud = new UsuarioDAO<Usuario>();
 			
-			System.out.println(ud.getUsuario(1, u).getNombre());
+			System.out.println(ud.getUsuario(1, us).getNombre());
 			
 
-			System.out.println(ud.getUsuario(1, u).getConstrania());
+			System.out.println(ud.getUsuario(1, us).getConstrania());
+	*/
 			
-			
-
-			
-			stopEntityManagerFactory();
+			UsuarioDAO uDao = new UsuarioDAO();
 		
-	}
+			System.out.println(((Usuario)uDao.login("Anthony306", "89603146")));
+			
+		
 
-	
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 	}
 	
@@ -61,6 +63,16 @@ public class UsuarioTester {
 											setParameter("idParam", new Integer("1")).
 											getSingleResult();
 		return usuario;
+	}
+	
+public static Usuario buscarPersona() throws Exception{
+		
+		String parametro = JOptionPane.showInputDialog("Nombre");
+		String parametro2 = JOptionPane.showInputDialog("Contrasenna");
+		
+		Usuario usuario = (Usuario)em.createNamedQuery("Usuario.Logear").setParameter("nombreParam", parametro).setParameter("constraniaParam", parametro2).getSingleResult();
+		return usuario;
+		
 	}
 	
 	

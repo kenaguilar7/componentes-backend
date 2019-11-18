@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 
 import com.componentes.entidades.Formulario;
 import com.componentes.entidades.Usuario;
+import com.ulatina.entidad.DemoPersona;
 
 public class FormularioDAO extends Servicio implements IDao {
 
@@ -62,8 +63,6 @@ public class FormularioDAO extends Servicio implements IDao {
 
 		
 		return query.getResultList();
-
-		
 		
 	}
 	
@@ -81,6 +80,7 @@ public class FormularioDAO extends Servicio implements IDao {
 		
 		try {
 			retorno = this.findAllSQLWithParam(usuario);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
@@ -88,6 +88,34 @@ public class FormularioDAO extends Servicio implements IDao {
 		this.stopEntityManagerFactory();
 
 		return retorno; 
+	}
+	
+	public List<Formulario> buscarFormulariosUsuario(Usuario usuario){
+		
+		List<Formulario> listaFormularios = null;
+		
+		try {
+			
+			this.startEntityManagerFactory();
+			
+			listaFormularios = (List<Formulario>)em.createNamedQuery("Formulario.DeUsuario").setParameter("usuarioParam", usuario).getResultList();
+			
+			if(listaFormularios.size() > 0) {
+				
+				return listaFormularios;
+				
+			}
+			
+			}catch (Exception e) {
+				System.out.println("No hay registros.");
+			}finally {
+				
+				this.stopEntityManagerFactory();
+				
+			} 
+		
+		return listaFormularios;
+		
 	}
 	
 	public  List<Formulario> findAllSQLWithParam(Usuario usuario) throws Exception {

@@ -3,6 +3,8 @@ package com.componentes.tester;
 import java.util.List;
 
 import com.componentes.controlador.FormularioController;
+import com.componentes.dao.FormularioDAO;
+import com.componentes.dao.UsuarioDAO;
 import com.componentes.entidades.Formulario;
 import com.componentes.entidades.Item;
 import com.componentes.entidades.Seccion;
@@ -10,12 +12,19 @@ import com.componentes.entidades.Usuario;
 
 public class testerListarFormulario {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 	
 
-		GetOne(); 
-		//GetAll(); 
-
+		FormularioDAO fDao = new FormularioDAO();
+		
+		UsuarioDAO uDao = new UsuarioDAO();
+		
+		
+		Usuario u = (Usuario)uDao.login("Adrea", "1234");
+		
+		System.out.println(u.getCorreo());
+		
+		
 	}
 	
 	public static void GetAll() {

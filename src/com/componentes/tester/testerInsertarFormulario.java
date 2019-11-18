@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.componentes.dao.FormularioDAO;
+import com.componentes.dao.IDao;
+import com.componentes.dao.ItemDAO;
+import com.componentes.dao.SeccionDAO;
 import com.componentes.dao.UsuarioDAO;
 import com.componentes.entidades.EItem;
 import com.componentes.entidades.Formulario;
@@ -16,16 +20,33 @@ public class testerInsertarFormulario {
 	public static void main(String[] args) {
 	
 
-			Usuario user = new Usuario(); ;
-			user.setNombre("Pepe");
-			user.setCorreo("pepe@gmail.com");
-			user.setConstrania("1234");
+			FormularioDAO fD = new FormularioDAO();
+			UsuarioDAO uD = new UsuarioDAO();
+			SeccionDAO sD = new SeccionDAO();
+			ItemDAO iD = new ItemDAO();
 			
-			UsuarioDAO d = new UsuarioDAO();
+			Usuario u = new Usuario();
 			
+			u = (Usuario)uD.login("Andrea", "1234");
 			
-			d.Insert(user);
-			
+			for (Formulario f : fD.buscarFormulariosUsuario(u)) {
+				f.GetSecciones().size();
+				
+				System.out.println(f.getNombre());
+				
+				for (Seccion s : f.GetSecciones()) {
+					
+					System.out.println(s.getPregunta());
+					
+					for (Item i : iD.itemsEnSecciones(s)) {
+						
+						System.out.println(i.getDefaultName());
+					
+					}
+					
+				}
+				
+			}
 			
 	}
 	
