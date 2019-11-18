@@ -24,7 +24,7 @@ public class testerInsertarFormulario {
 			UsuarioDAO uD = new UsuarioDAO();
 			SeccionDAO sD = new SeccionDAO();
 			ItemDAO iD = new ItemDAO();
-			
+			/*
 			Usuario u = new Usuario();
 			
 			u = (Usuario)uD.login("Andrea", "1234");
@@ -47,6 +47,16 @@ public class testerInsertarFormulario {
 				}
 				
 			}
+			*/
+			
+			Usuario us = new Usuario();
+			us.setNombre("Juan");
+			us.setConstrania("123");
+			us.setCorreo("fasdfsa");
+			
+			us.setFormulario(GetDummyForms(us));
+			
+			uD.Insert(us);
 			
 	}
 	
