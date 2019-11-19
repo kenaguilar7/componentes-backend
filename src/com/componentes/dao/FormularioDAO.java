@@ -1,13 +1,11 @@
 package com.componentes.dao;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.TypedQuery;
-
+import java.util.ArrayList;
 import com.componentes.entidades.Formulario;
 import com.componentes.entidades.Usuario;
-import com.ulatina.entidad.DemoPersona;
+
 
 public class FormularioDAO extends Servicio implements IDao {
 
@@ -27,7 +25,7 @@ public class FormularioDAO extends Servicio implements IDao {
 		this.stopEntityManagerFactory();
 		
 	}
-
+	
 	@Override
 	public void Update(Object t) {
 		// TODO Auto-generated method stub

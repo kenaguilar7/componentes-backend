@@ -2,6 +2,7 @@ package com.componentes.controlador;
 
 import java.util.List;
 
+import com.componentes.entidades.Formulario;
 import com.componentes.entidades.Usuario;
 
 public class UsuarioController<Usuario> implements IController<Usuario> {
@@ -17,7 +18,8 @@ public class UsuarioController<Usuario> implements IController<Usuario> {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	
 	@Override
 	public void Delete(int id) {
 		// TODO Auto-generated method stub

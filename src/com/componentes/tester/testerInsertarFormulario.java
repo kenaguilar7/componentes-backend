@@ -14,6 +14,7 @@ import com.componentes.entidades.Formulario;
 import com.componentes.entidades.Item;
 import com.componentes.entidades.Seccion;
 import com.componentes.entidades.Usuario;
+import com.componentes.logica.UsuarioLog;
 
 public class testerInsertarFormulario {
 
@@ -27,7 +28,7 @@ public class testerInsertarFormulario {
 			/*
 			Usuario u = new Usuario();
 			
-			u = (Usuario)uD.login("Andrea", "1234");
+			u = (Usuario)uD.login("Juan", "123");
 			
 			for (Formulario f : fD.buscarFormulariosUsuario(u)) {
 				f.GetSecciones().size();
@@ -49,15 +50,41 @@ public class testerInsertarFormulario {
 			}
 			*/
 			
-			Usuario us = new Usuario();
-			us.setNombre("Juan");
-			us.setConstrania("123");
-			us.setCorreo("fasdfsa");
+			List<Formulario> formularios = new ArrayList<>();
+			List<Seccion> secciones = new ArrayList<>();
+			List<Item> items = new ArrayList<>();
+					
+			Usuario us = (Usuario)uD.login("Anthony3064", "89603146");
 			
-			us.setFormulario(GetDummyForms(us));
+			Formulario f = new Formulario();
+			f.setNombre("Prueba guardar");
+			f.setFavorito(false);
+		
+			Seccion s = new Seccion();
+			s.setFormularioPadre(f);
+			s.setPregunta("lhglkhgkaglhkdhgjaksdg");
+		
+			for	(int i = 0 ; i < 4 ; i++) {
+				
+				Item it = new Item();
+				it.setSeccion(s);
+				it.setDefaultName("Opcion " + i);
+				it.setTipoDato(EItem.RadioButton);
+				items.add(it);
+			}
 			
-			uD.Insert(us);
+			s.SetItem(items);
 			
+			secciones.add(s);
+			
+			f.SetSecciones(secciones);
+			
+			formularios.add(f);
+
+			
+			UsuarioLog p = new UsuarioLog();
+	
+			p.guardarFormularioUsuario(formularios, us);
 	}
 	
 	public static List<Formulario> GetDummyForms(Usuario usurio){

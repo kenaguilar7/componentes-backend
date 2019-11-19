@@ -16,14 +16,24 @@ public class prueba {
 		
 		UsuarioDAO dao = new UsuarioDAO();
 
-		usuario.setNombre("Alejandro Murillo");
-		usuario.setConstrania("123456");
-		usuario.setCorreo("lkhalfkjsdhflkasd");
-		usuario.setId(2);
-
-		dao.Insert(usuario);
+		usuario = (Usuario) dao.login("Anthony3064", "89603146");
+		
+		List<Formulario> lista = new ArrayList<>();
+		
+		for	(int i = 0 ; i < 3 ; i++) {
+			
+			Formulario f = new Formulario();
+			
+			f.setNombre("AAAA" + i);
+			f.setUsuarioPadre(usuario);
+			lista.add(f);
+			
+		}
 		
 		
+		usuario.setFormulario(lista);
+		
+		dao.actualizar(usuario);
 		
 	}
 

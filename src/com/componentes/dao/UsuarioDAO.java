@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
+import com.componentes.entidades.Formulario;
 import com.componentes.entidades.Usuario;
 
 public class UsuarioDAO<Usuario> extends Servicio implements IDao<Usuario> {
@@ -27,7 +28,23 @@ public class UsuarioDAO<Usuario> extends Servicio implements IDao<Usuario> {
 	@Override
 	public void Update(Usuario t) {
 		
+		try {
+			this.startEntityManagerFactory();
+			em.getTransaction().begin();
+			
+			em.merge((Usuario)t);
+			
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("Ha ocurrido un erro.");
+		}finally {
+			
+			this.stopEntityManagerFactory();
+		}
+		
+		
 	}
+	
 
 	@Override
 	public void Delete(Usuario t) {
@@ -67,16 +84,31 @@ public class UsuarioDAO<Usuario> extends Servicio implements IDao<Usuario> {
 		return usuario;	
 	}
 	
-	public Usuario getUsuario(int id,Usuario u) {
+	public Usuario getUsuario(Usuario u) {
 		
-		this.startEntityManagerFactory();
-		Usuario userLeido = (Usuario) em.find(u.getClass(), new Integer(id));
-		this.stopEntityManagerFactory();
-		return (Usuario) userLeido; 
+		Usuario usuario = null;
 		
+		try {
+			this.startEntityManagerFactory();
+			
+			usuario = (Usuario)em.createNamedQuery("Usuario.GetUsuario").setParameter("usuarioParam", u).getSingleResult();
+			
+			if (usuario != null) {
+				return usuario;
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("No hay registro.");
+		}finally {
+			
+			this.stopEntityManagerFactory();
+			
+		}
+		
+		return usuario;
 	}
 	
-
 	@Override
 	public List<Usuario> GetList() {
 		

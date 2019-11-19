@@ -1,10 +1,12 @@
 package com.componentes.tester;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.componentes.controlador.FormularioController;
 import com.componentes.dao.FormularioDAO;
 import com.componentes.dao.UsuarioDAO;
+import com.componentes.entidades.EItem;
 import com.componentes.entidades.Formulario;
 import com.componentes.entidades.Item;
 import com.componentes.entidades.Seccion;
@@ -19,11 +21,34 @@ public class testerListarFormulario {
 		
 		UsuarioDAO uDao = new UsuarioDAO();
 		
+		Usuario u = (Usuario)uDao.login("Anthony3064", "89603146");
 		
-		Usuario u = (Usuario)uDao.login("Adrea", "1234");
+		List<Formulario> lista = new ArrayList<>();
 		
-		System.out.println(u.getCorreo());
-		
+		for	(int i = 0 ; i < 3 ; i++) {
+			
+			Formulario f = new Formulario();
+			f.setNombre("AAAAAAAAA" + String.valueOf(i+1));
+			f.setFavorito(false);
+			f.setUsuarioPadre(u);
+			
+			List<Item> items = new ArrayList<>();
+			Item it = new Item();
+			it.setDefaultName("kkkk" + String.valueOf(i+1)) ;
+			it.setTipoDato(EItem.RadioButton);
+			
+			
+			List<Seccion> secciones = new ArrayList<>();
+			Seccion s = new Seccion();
+			s.setPregunta("?????" + String.valueOf(i+1));
+			s.setFormularioPadre(f);
+			s.SetItem(items);
+			secciones.add(s);
+			it.setSeccion(s);
+			f.SetSecciones(secciones);
+
+			items.add(it);
+		}
 		
 	}
 	

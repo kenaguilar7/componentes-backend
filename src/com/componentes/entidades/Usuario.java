@@ -19,8 +19,10 @@ import javax.persistence.*;
 				query = "SELECT u FROM Usuario u WHERE u.Nombre = :nombreParam AND u.Constrania = :constraniaParam"),
 		@NamedQuery(
 				name = "Usuario.GetAll", 
-				query = "SELECT u FROM Usuario u")
-		
+				query = "SELECT u FROM Usuario u"),
+		@NamedQuery(
+				name = "Usuario.GetUsuario", 
+				query = "SELECT u FROM Usuario u WHERE u =  :usuarioParam")
 })
 
 @NamedNativeQueries({

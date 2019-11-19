@@ -2,9 +2,15 @@ package com.componentes.logica;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import javax.swing.JOptionPane;
 
 import com.componentes.dao.FormularioDAO;
+import com.componentes.entidades.EItem;
 import com.componentes.entidades.Formulario;
+import com.componentes.entidades.Item;
+import com.componentes.entidades.Seccion;
 import com.componentes.entidades.Usuario;
 
 public class FormularioCL {
@@ -27,5 +33,6 @@ public class FormularioCL {
 		return formDao.Get(id); 
 		
 	}
-	
+
+
 }

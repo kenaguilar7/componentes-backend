@@ -98,4 +98,5 @@ public class Formulario implements Serializable {
 	public void setUsuarioPadre(Usuario usuarioPadre) {
 		this.UsuarioPadre = usuarioPadre; 
 	}
+	
 }
