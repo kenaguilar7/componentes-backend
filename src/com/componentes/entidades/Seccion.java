@@ -20,7 +20,7 @@ import org.hibernate.annotations.IndexColumn;
 		
 		@NamedQuery(
 				name = "Seccion.SeccionesEnFormulario", 
-				query = "SELECT s FROM Seccion s JOIN FETCH s.Items WHERE s.FormularioPadre = :formularioParam")
+				query = "SELECT s FROM Seccion s WHERE s.FormularioPadre = :formularioParam")
 })
 
 public class Seccion implements Serializable {

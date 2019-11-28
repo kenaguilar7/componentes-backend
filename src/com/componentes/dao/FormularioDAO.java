@@ -9,6 +9,7 @@ import com.componentes.entidades.Usuario;
 
 public class FormularioDAO extends Servicio implements IDao {
 
+	
 	@Override
 	public void Insert(Object t) {
 		
@@ -42,9 +43,10 @@ public class FormularioDAO extends Servicio implements IDao {
 	public Formulario Get(int id) {
 		
 		this.startEntityManagerFactory();
-		Formulario formLeido = em.find(Formulario.class, new Integer("1"));
+		Formulario formLeido = em.find(Formulario.class, id);
 		this.stopEntityManagerFactory();
-		return formLeido; 
+		return formLeido;
+		
 	}
 
 	@Override
@@ -94,7 +96,7 @@ public class FormularioDAO extends Servicio implements IDao {
 		
 		try {
 			
-			this.startEntityManagerFactory();
+			startEntityManagerFactory();
 			
 			listaFormularios = (List<Formulario>)em.createNamedQuery("Formulario.DeUsuario").setParameter("usuarioParam", usuario).getResultList();
 			
@@ -106,10 +108,6 @@ public class FormularioDAO extends Servicio implements IDao {
 			
 			}catch (Exception e) {
 				System.out.println("No hay registros.");
-			}finally {
-				
-				this.stopEntityManagerFactory();
-				
 			} 
 		
 		return listaFormularios;

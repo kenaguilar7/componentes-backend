@@ -7,7 +7,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
+import com.componentes.dao.FormularioDAO;
+import com.componentes.dao.ItemDAO;
+import com.componentes.dao.SeccionDAO;
 import com.componentes.dao.UsuarioDAO;
+import com.componentes.entidades.Formulario;
+import com.componentes.entidades.Item;
+import com.componentes.entidades.Seccion;
 import com.componentes.entidades.Usuario;
 import com.ulatina.entidad.DemoPersona;
 
@@ -50,11 +56,21 @@ public class UsuarioTester {
 	*/
 			
 			UsuarioDAO uDao = new UsuarioDAO();
-		
-			System.out.println(((Usuario)uDao.login("Anthony306", "89603146")));
+			SeccionDAO sD = new SeccionDAO();
+			ItemDAO iD = new ItemDAO();
 			
-		
-
+			FormularioDAO fD = new FormularioDAO();
+			
+			for (Formulario frm : fD.buscarFormulariosUsuario(((Usuario)uDao.login("Anthony3064", "123456")))) {
+				System.out.println(frm.getNombre());
+			
+				for (Seccion s : sD.seccionesEnFormulario(frm)) {
+					System.out.println(s.getPregunta());
+				}
+				
+			}
+			
+			fD.stopEntityManagerFactory();
 
 	}
 	
@@ -91,6 +107,7 @@ public static Usuario buscarPersona() throws Exception{
 	public static void stopEntityManagerFactory() {
 		if (entityManagerFactory != null) {
 			if (entityManagerFactory.isOpen()) {
+				System.out.println("Si esta");
 				try {
 					entityManagerFactory.close();
 				} catch (Exception e) {

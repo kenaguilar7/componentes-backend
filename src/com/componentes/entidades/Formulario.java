@@ -21,7 +21,7 @@ import org.hibernate.annotations.IndexColumn;
 	),
 		@NamedQuery(
 				name = "Formulario.DeUsuario", 
-				query = "SELECT f FROM Formulario f JOIN FETCH f.Secciones WHERE f.UsuarioPadre = :usuarioParam "
+				query = "SELECT f FROM Formulario f WHERE f.UsuarioPadre = :usuarioParam "
 	)
 })
 
