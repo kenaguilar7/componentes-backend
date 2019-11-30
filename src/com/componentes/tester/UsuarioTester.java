@@ -64,14 +64,21 @@ public class UsuarioTester {
 			for (Formulario frm : fD.buscarFormulariosUsuario(((Usuario)uDao.login("Anthony3064", "123456")))) {
 				System.out.println(frm.getNombre());
 			
-				for (Seccion s : sD.seccionesEnFormulario(frm)) {
+				for (Seccion s : frm.GetSecciones()) {
 					System.out.println(s.getPregunta());
+					for (Item item : s.getItem()) {
+						System.out.println(item.getDefaultName());
+					}
 				}
 				
 			}
 			
 			fD.stopEntityManagerFactory();
-
+			
+		
+			System.out.println(fD.GetList());
+	
+			
 	}
 	
 	public static Usuario findPK() throws Exception {

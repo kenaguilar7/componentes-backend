@@ -17,7 +17,7 @@ import org.hibernate.annotations.IndexColumn;
 @NamedQueries(value = {
 		@NamedQuery(
 				name = "Formulario.findPK", 
-				query = "SELECT f FROM Formulario f WHERE f.Id = :idParam"
+				query = "SELECT f FROM Formulario f"
 	),
 		@NamedQuery(
 				name = "Formulario.DeUsuario", 
